@@ -162,8 +162,11 @@ class C19Plot(object):
         # Daily C19 Hospitilisation by age < 45
         fig,ax = plt.subplots()
         plt.title("Daily C19 Hospitilisation by age < 14")
-        plt.plot(self.x_hspc, self.df_hspc['HospitalisedAged5_new_rm'], label='Daily C19 Hospitalised <5 (3 Day RM)', marker='o')
-        plt.plot(self.x_hspc, self.df_hspc['HospitalisedAged5to14_new_rm'], label='Daily C19 Hospitalised 5-14(3 Day RM)', marker='o')
+        #plt.plot(self.x_hspc, self.df_hspc['HospitalisedAged5_new_rm'], label='Daily C19 Hospitalised <5 (3 Day RM)', marker='o')
+        #plt.plot(self.x_hspc, self.df_hspc['HospitalisedAged5to14_new_rm'], label='Daily C19 Hospitalised 5-14(3 Day RM)', marker='o')
+
+        plt.plot(self.x_hspc, self.df_hspc['HospitalisedAged5_new'], label='Daily C19 Hospitalised <5', marker='o')
+        plt.plot(self.x_hspc, self.df_hspc['HospitalisedAged5to14_new'], label='Daily C19 Hospitalised 5-14', marker='o')
 
         monthyearFmt = mdates.DateFormatter('%d %b')
         ax.xaxis.set_major_formatter(monthyearFmt)
