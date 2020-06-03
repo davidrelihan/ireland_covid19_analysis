@@ -10,7 +10,7 @@ def get_daily_c19_ireland_data():
     df["available_icu_beds_rm"] = df["available_icu_beds"].rolling(3).mean()
 
     #df = df[0:26]
-    df
+    df = df.tail(40)
     return df
 
 def get_gov_c19_ireland_dataset():
