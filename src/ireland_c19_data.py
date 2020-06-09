@@ -4,7 +4,6 @@ def get_daily_c19_ireland_data():
     df = pd.read_excel("data/ireland_hospital_c19_stats.xlsx", sheet_name=0)
 
     #add rolling mean
-    df["new_deaths_rm"] = df["new_deaths"].rolling(3).mean()
     df["c19_icu_cases_rm"] = df["c19_icu_cases"].rolling(3).mean()
     df["c19_ventilated_cases_rm"] = df["c19_ventilated_cases"].rolling(3).mean()
     df["available_icu_beds_rm"] = df["available_icu_beds"].rolling(3).mean()

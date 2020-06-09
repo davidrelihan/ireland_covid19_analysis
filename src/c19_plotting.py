@@ -12,23 +12,6 @@ class C19Plot(object):
         self.x = self.df['date']
         self.x_hspc = self.df_hspc['Date']
 
-    def daily_death_vs_icu(self):
-        # ICU Cases vs Deaths
-        x = self.df['date']
-        fig,ax = plt.subplots()
-        plt.title("Daily Deaths Vs ICU Cases")
-        plt.plot(self.x, self.df['c19_icu_cases_rm'], label="Daily C19 ICU Cases (3 Day RM)",  marker='o')
-        plt.bar(self.x, self.df['new_deaths'], label='Daily Death Updates', color="lightgrey")
-        plt.plot(self.x, self.df['new_deaths_rm'], label='Daily Deaths (3 Day RM)', marker='o')
-        monthyearFmt = mdates.DateFormatter('%d %b')
-        ax.xaxis.set_major_formatter(monthyearFmt)
-        ax.set_xticks(self.x)
-        plt.xticks(rotation=90)
-        plt.legend()
-        plt.minorticks_off()
-        plt.savefig("output/daily_deaths_vs_icu.png")
-        plt.show()
-
     def daily_icu_availability(self):
         # ICU Availability
         fig,ax = plt.subplots()
