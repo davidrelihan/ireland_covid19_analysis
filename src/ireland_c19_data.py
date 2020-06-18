@@ -62,5 +62,5 @@ def get_gov_c19_ireland_dataset():
     df_hspc.insert(28, "HospitalisedAged65up_new", HospitalisedAged65up)
     df_hspc["HospitalisedAged65up_new_rm"] = df_hspc["HospitalisedAged65up_new"].rolling(3).mean()
 
-    df_hspc = df_hspc.tail(40)
+    df_hspc = df_hspc.tail(90)
     return df_hspc

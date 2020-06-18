@@ -3,7 +3,7 @@ import matplotlib.dates as mdates
 
 from pandas.plotting import register_matplotlib_converters
 
-plt.rcParams['figure.figsize'] = [12, 5]
+plt.rcParams['figure.figsize'] = [22, 10]
 
 class C19Plot(object):
     def __init__(self, daily_data, gov_dataset):
