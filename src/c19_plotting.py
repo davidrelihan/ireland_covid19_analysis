@@ -5,7 +5,7 @@ from pandas.plotting import register_matplotlib_converters
 
 plt.rcParams['figure.figsize'] = [22, 10]
 
-class C19Plot(object):
+class C19MatPlot(object):
     def __init__(self, daily_data, gov_dataset):
         self.df = daily_data
         self.df_hspc = gov_dataset
