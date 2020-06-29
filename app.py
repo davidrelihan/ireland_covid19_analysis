@@ -17,7 +17,8 @@ app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 server = app.server
 
-app.layout = html.Div(children=[
+def serve_layout():
+    return html.Div(children=[
     dbc.Navbar(
         [
             html.A(
@@ -67,6 +68,8 @@ app.layout = html.Div(children=[
         figure=c19plotly.get_icu_vs_hos_vs_deaths_vs_cases_fig()
     )
 ])
+
+app.layout = serve_layout() 
 
 if __name__ == '__main__':
     app.run_server(debug=True)
