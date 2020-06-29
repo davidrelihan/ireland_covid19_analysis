@@ -83,5 +83,5 @@ class C19Plotly(object):
         fig.add_trace(go.Scatter(
             x=self.x_hspc, y=self.df_hspc['ConfirmedCovidDeaths_rm'], name="Daily C19 Deaths (3 Day RM)", mode='lines+markers'))
 
-        fig.update_layout(self.get_graph_settings("Daily Hospitilisation vs ICU vs Deaths"))
+        fig.update_layout(self.get_graph_settings("Daily Hospitilisation vs ICU vs Cases vs Deaths"))
         return fig
