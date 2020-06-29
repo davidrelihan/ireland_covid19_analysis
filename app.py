@@ -58,6 +58,11 @@ app.layout = html.Div(children=[
     ),
 
     dcc.Graph(
+        id='icu-hos-deaths-graph-40',
+        figure=c19plotly.get_icu_vs_hos_vs_deaths_vs_cases_fig_last_40()
+    ),
+
+    dcc.Graph(
         id='icu-hos-deaths-graph',
         figure=c19plotly.get_icu_vs_hos_vs_deaths_vs_cases_fig()
     )

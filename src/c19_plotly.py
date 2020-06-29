@@ -72,6 +72,22 @@ class C19Plotly(object):
         fig.update_layout(self.get_graph_settings("Daily C19 Deaths"))
         return fig
 
+    def get_icu_vs_hos_vs_deaths_vs_cases_fig_last_40(self):
+        fig = go.Figure()
+        df_hspc_last_40 = self.df_hspc.tail(40)
+        x_hspc_last_40 = self.x_hspc.tail(40)
+        fig.add_trace(go.Scatter(
+            x=x_hspc_last_40, y=df_hspc_last_40['HospitalisedCovidCases_new_rm'], name="Daily C19 Hospitalised (3 Day RM)", mode='lines+markers'))
+        fig.add_trace(go.Scatter(
+            x=x_hspc_last_40, y=df_hspc_last_40['RequiringICUCovidCases_new_rm'], name="Daily New C19 ICU (3 Day RM)", mode='lines+markers'))
+        fig.add_trace(go.Scatter(
+            x=x_hspc_last_40, y=df_hspc_last_40['ConfirmedCovidCases_new_rm'], name="Daily New C19 Cases (3 Day RM)", mode='lines+markers'))
+        fig.add_trace(go.Scatter(
+            x=x_hspc_last_40, y=df_hspc_last_40['ConfirmedCovidDeaths_rm'], name="Daily C19 Deaths (3 Day RM)", mode='lines+markers'))
+
+        fig.update_layout(self.get_graph_settings("Daily Hospitilisation vs ICU vs Cases vs Deaths Last 40 Days"))
+        return fig
+
     def get_icu_vs_hos_vs_deaths_vs_cases_fig(self):
         fig = go.Figure()
         fig.add_trace(go.Scatter(
