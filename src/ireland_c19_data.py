@@ -17,8 +17,11 @@ def get_gov_c19_ireland_dataset():
     df_hspc['Date'] = pd.to_datetime(df_hspc['Date']) # csv file date format was changed to milliseconds
     df_hspc['Datestr'] = df_hspc['Date'].dt.strftime('%d/%m')
 
+    # add cases
+    df_hspc["ConfirmedCovidCases_new"] = df_hspc["TotalConfirmedCovidCases"].diff().clip(0)
+    df_hspc["ConfirmedCovidCases_new_rm"] = df_hspc["ConfirmedCovidCases_new"].rolling(3).mean()
+
     # add deaths
-    df_hspc["HospitalisedCovidCases_new"] = df_hspc["HospitalisedCovidCases"].diff().clip(0)
     df_hspc["ConfirmedCovidDeaths_rm"] = df_hspc["ConfirmedCovidDeaths"].rolling(3).mean()
 
     # add new hospital admissions
