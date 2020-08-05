@@ -4,14 +4,15 @@ import dash_core_components as dcc
 import dash_html_components as html
 import dash_bootstrap_components as dbc
 
-from src.ireland_c19_data import get_daily_c19_ireland_data, get_gov_c19_ireland_dataset
+from src.ireland_c19_data import get_daily_c19_ireland_data, get_gov_c19_ireland_dataset, get_c19_ireland_testing_dataset
 from src.c19_plotly import C19Plotly
 
 PLOTLY_LOGO = "https://images.plot.ly/logo/new-branding/plotly-logomark.png"
 
 df = get_daily_c19_ireland_data()
 df_hspc = get_gov_c19_ireland_dataset()
-c19plotly = C19Plotly(df, df_hspc)
+df_tests = get_c19_ireland_testing_dataset()
+c19plotly = C19Plotly(df, df_hspc, df_tests)
 
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
@@ -66,7 +67,14 @@ def serve_layout():
     dcc.Graph(
         id='icu-hos-deaths-graph',
         figure=c19plotly.get_icu_vs_hos_vs_deaths_vs_cases_fig()
+    ),
+
+    dcc.Graph(
+        id='daily-tests-graph',
+        figure=c19plotly.get_daily_tests_fig()
     )
+
+    
 ])
 
 app.layout = serve_layout() 

@@ -12,6 +12,17 @@ def get_daily_c19_ireland_data():
     df = df.tail(40)
     return df
 
+def get_c19_ireland_testing_dataset():
+    df_hspc = pd.read_csv("http://opendata-geohive.hub.arcgis.com/datasets/f6d6332820ca466999dbd852f6ad4d5a_0.csv?outSR={%22latestWkid%22:3857,%22wkid%22:102100}")
+    df_hspc['Date'] = pd.to_datetime(df_hspc['Date_HPSC']) # csv file date format was changed to milliseconds
+    df_hspc['Datestr'] = df_hspc['Date'].dt.strftime('%d/%m')
+
+    # Add daily Tests
+    df_hspc["tests_new"] = df_hspc["TotalLabs"].diff().clip(0)
+    df_hspc["tests_new_rm"] = df_hspc["tests_new"].rolling(3).mean()
+
+    return df_hspc.tail(90)
+
 def get_gov_c19_ireland_dataset():
     df_hspc = pd.read_csv("http://opendata-geohive.hub.arcgis.com/datasets/d8eb52d56273413b84b0187a4e9117be_0.csv?outSR={%22latestWkid%22:3857,%22wkid%22:102100}")
     df_hspc['Date'] = pd.to_datetime(df_hspc['Date']) # csv file date format was changed to milliseconds

@@ -2,11 +2,15 @@ import plotly.graph_objects as go
 
 
 class C19Plotly(object):
-    def __init__(self, daily_data, gov_dataset):
+    def __init__(self, daily_data, gov_dataset, daily_tests):
         self.df = daily_data
         self.df_hspc = gov_dataset
+        self.df_tests = daily_tests
+        self.x_tests = self.df_tests['Date']
         self.x = self.df['date']
         self.x_hspc = self.df_hspc['Date']
+        self.df_hspc_last_40 = self.df_hspc.tail(40)
+        self.x_hspc_last_40 = self.x_hspc.tail(40)
 
     def get_graph_settings(self, title):
         settings = {
@@ -74,16 +78,14 @@ class C19Plotly(object):
 
     def get_icu_vs_hos_vs_deaths_vs_cases_fig_last_40(self):
         fig = go.Figure()
-        df_hspc_last_40 = self.df_hspc.tail(40)
-        x_hspc_last_40 = self.x_hspc.tail(40)
         fig.add_trace(go.Scatter(
-            x=x_hspc_last_40, y=df_hspc_last_40['HospitalisedCovidCases_new_rm'], name="Daily C19 Hospitalised (3 Day RM)", mode='lines+markers'))
+            x=self.x_hspc_last_40, y=self.df_hspc_last_40['HospitalisedCovidCases_new_rm'], name="Daily C19 Hospitalised (3 Day RM)", mode='lines+markers'))
         fig.add_trace(go.Scatter(
-            x=x_hspc_last_40, y=df_hspc_last_40['RequiringICUCovidCases_new_rm'], name="Daily New C19 ICU (3 Day RM)", mode='lines+markers'))
+            x=self.x_hspc_last_40, y=self.df_hspc_last_40['RequiringICUCovidCases_new_rm'], name="Daily New C19 ICU (3 Day RM)", mode='lines+markers'))
         fig.add_trace(go.Scatter(
-            x=x_hspc_last_40, y=df_hspc_last_40['ConfirmedCovidCases_new_rm'], name="Daily New C19 Cases (3 Day RM)", mode='lines+markers'))
+            x=self.x_hspc_last_40, y=self.df_hspc_last_40['ConfirmedCovidCases_new_rm'], name="Daily New C19 Cases (3 Day RM)", mode='lines+markers'))
         fig.add_trace(go.Scatter(
-            x=x_hspc_last_40, y=df_hspc_last_40['ConfirmedCovidDeaths_rm'], name="Daily C19 Deaths (3 Day RM)", mode='lines+markers'))
+            x=self.x_hspc_last_40, y=self.df_hspc_last_40['ConfirmedCovidDeaths_rm'], name="Daily C19 Deaths (3 Day RM)", mode='lines+markers'))
 
         fig.update_layout(self.get_graph_settings("Daily Hospitilisation vs ICU vs Cases vs Deaths Last 40 Days"))
         return fig
@@ -100,4 +102,14 @@ class C19Plotly(object):
             x=self.x_hspc, y=self.df_hspc['ConfirmedCovidDeaths_rm'], name="Daily C19 Deaths (3 Day RM)", mode='lines+markers'))
 
         fig.update_layout(self.get_graph_settings("Daily Hospitilisation vs ICU vs Cases vs Deaths"))
+        return fig
+
+    def get_daily_tests_fig(self):
+        fig = go.Figure()
+        fig.add_trace(go.Scatter(
+            x=self.x_tests, y=self.df_tests['tests_new_rm'], name="Daily New C19 Tests (3 Day RM)", mode='lines+markers'))
+        fig.add_trace(go.Bar(x=self.x_tests, y=self.df_tests['tests_new'],
+                                name="Daily Tests", marker_color='lightgrey'))
+
+        fig.update_layout(self.get_graph_settings("Daily Tests"))
         return fig
