@@ -40,11 +40,6 @@ def serve_layout():
     ),
 
     dcc.Graph(
-        id='vent-icu-bed-graph',
-        figure=c19plotly.get_icu_vs_vent_fig()
-    ),
-
-    dcc.Graph(
         id='icu-graph',
         figure=c19plotly.get_icu_cases_fig()
     ),
@@ -72,8 +67,12 @@ def serve_layout():
     dcc.Graph(
         id='daily-tests-graph',
         figure=c19plotly.get_daily_tests_fig()
-    )
+    ),
 
+    dcc.Graph(
+        id='vent-icu-bed-graph',
+        figure=c19plotly.get_icu_vs_vent_fig()
+    )
     
 ])
 
