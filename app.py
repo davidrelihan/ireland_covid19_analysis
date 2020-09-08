@@ -50,6 +50,11 @@ def serve_layout():
     ),
 
     dcc.Graph(
+        id='hos-5-14-graph',
+        figure=c19plotly.get_hos_cases_5_14_fig()
+    ),
+
+    dcc.Graph(
         id='death-graph',
         figure=c19plotly.get_deaths_fig()
     ),
