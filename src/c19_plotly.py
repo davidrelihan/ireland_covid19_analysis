@@ -76,6 +76,16 @@ class C19Plotly(object):
         fig.update_layout(self.get_graph_settings("Daily C19 Hospitilisation 5-14"))
         return fig
 
+    def get_hos_cases_5_fig(self):
+        fig = go.Figure()
+        fig.add_trace(go.Scatter(
+            x=self.x_hspc, y=self.df_hspc['HospitalisedAged5_new_rm'], name="Daily C19 Hospitalised <5 (3 Day RM)", mode='lines+markers'))
+        fig.add_trace(go.Bar(x=self.x_hspc, y=self.df_hspc['HospitalisedAged5_new'],
+                                name="Daily C19 Hospitalised <5", marker_color='lightgrey'))
+
+        fig.update_layout(self.get_graph_settings("Daily C19 Hospitilisation <5"))
+        return fig
+
     def get_deaths_fig(self):
         fig = go.Figure()
         fig.add_trace(go.Scatter(
