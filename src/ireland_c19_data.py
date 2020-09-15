@@ -38,6 +38,7 @@ def get_gov_c19_ireland_dataset():
     # add new hospital admissions
     df_hspc["HospitalisedCovidCases_new"] = df_hspc["HospitalisedCovidCases"].diff().clip(0)
     df_hspc["HospitalisedCovidCases_new_rm"] = df_hspc["HospitalisedCovidCases_new"].rolling(3).mean()
+    df_hspc["HospitalisedCovidCases_new_7_rm"] = df_hspc["HospitalisedCovidCases_new"].rolling(7).mean()
 
     # add ICU
     df_hspc["RequiringICUCovidCases_new"] = df_hspc["RequiringICUCovidCases"].diff().clip(0)
