@@ -9,7 +9,7 @@ def get_daily_c19_ireland_data():
     df["available_icu_beds_rm"] = df["available_icu_beds"].rolling(3).mean()
 
     #df = df[0:26]
-    df = df.tail(300)
+    df = df.tail(360)
     return df
 
 def get_c19_ireland_testing_dataset():
@@ -21,7 +21,7 @@ def get_c19_ireland_testing_dataset():
     df_hspc["tests_new"] = df_hspc["TotalLabs"].diff().clip(0)
     df_hspc["tests_new_rm"] = df_hspc["tests_new"].rolling(3).mean()
 
-    return df_hspc.tail(300)
+    return df_hspc.tail(360)
 
 def get_gov_c19_ireland_dataset():
     df_hspc = pd.read_csv("http://opendata-geohive.hub.arcgis.com/datasets/d8eb52d56273413b84b0187a4e9117be_0.csv?outSR={%22latestWkid%22:3857,%22wkid%22:102100}")
@@ -77,5 +77,5 @@ def get_gov_c19_ireland_dataset():
     df_hspc.insert(28, "HospitalisedAged65up_new", HospitalisedAged65up)
     df_hspc["HospitalisedAged65up_new_rm"] = df_hspc["HospitalisedAged65up_new"].rolling(3).mean()
 
-    df_hspc = df_hspc.tail(300)
+    df_hspc = df_hspc.tail(360)
     return df_hspc
