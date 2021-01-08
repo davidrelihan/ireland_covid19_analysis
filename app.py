@@ -81,6 +81,11 @@ def serve_layout():
 
     dcc.Graph(
         id='vent-icu-bed-graph',
+        figure=c19plotly.get_icu_vs_vent_vs_icu_beds_fig()
+    ),
+
+    dcc.Graph(
+        id='vent-icu-graph',
         figure=c19plotly.get_icu_vs_vent_fig()
     )
     

@@ -30,7 +30,7 @@ class C19Plotly(object):
         }
         return settings
 
-    def get_icu_vs_vent_fig(self):
+    def get_icu_vs_vent_vs_icu_beds_fig(self):
         fig = go.Figure()
         fig.add_trace(go.Scatter(
             x=self.x, y=self.df['c19_icu_cases_rm'], name="Daily C19 ICU Cases (3 Day RM)", mode='lines+markers'))
@@ -43,6 +43,20 @@ class C19Plotly(object):
 
         fig.update_layout(
             self.get_graph_settings("Daily Ventilation Cases Vs ICU Cases Vs Available ICU Beds")
+        )
+        return fig
+
+    def get_icu_vs_vent_fig(self):
+        fig = go.Figure()
+        fig.add_trace(go.Scatter(
+            x=self.x, y=self.df['c19_icu_cases_rm'], name="Daily C19 ICU Cases (3 Day RM)", mode='lines+markers'))
+        fig.add_trace(go.Bar(x=self.x, y=self.df['c19_ventilated_cases'],
+                                name="Daily Confirmed c19 Ventilation cases", marker_color='lightgrey'))
+        fig.add_trace(go.Scatter(
+            x=self.x, y=self.df['c19_ventilated_cases_rm'], name="c19 Ventilation cases (3 Day RM)", mode='lines+markers'))
+
+        fig.update_layout(
+            self.get_graph_settings("Daily Ventilation Cases Vs ICU Cases")
         )
         return fig
 
