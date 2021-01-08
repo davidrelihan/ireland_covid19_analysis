@@ -43,15 +43,18 @@ def get_gov_c19_ireland_dataset():
     # add ICU
     df_hspc["RequiringICUCovidCases_new"] = df_hspc["RequiringICUCovidCases"].diff().clip(0)
     df_hspc["RequiringICUCovidCases_new_rm"] = df_hspc["RequiringICUCovidCases_new"].rolling(3).mean()
+    df_hspc["RequiringICUCovidCases_new_7_rm"] = df_hspc["RequiringICUCovidCases_new"].rolling(7).mean()
 
     HospitalisedAged5 = df_hspc["HospitalisedAged5"].diff().clip(0)
     df_hspc.insert(14, "HospitalisedAged5_new", HospitalisedAged5)
     df_hspc["HospitalisedAged5_new_rm"] = df_hspc["HospitalisedAged5_new"].rolling(3).mean()
+    df_hspc["HospitalisedAged5_new_7_rm"] = df_hspc["HospitalisedAged5_new"].rolling(7).mean()
 
     HospitalisedAged5to14 = df_hspc["HospitalisedAged5to14"].diff().clip(0)
     df_hspc.insert(16, "HospitalisedAged5to14_new", HospitalisedAged5to14)
     #add rolling mean
     df_hspc["HospitalisedAged5to14_new_rm"] = df_hspc["HospitalisedAged5to14_new"].rolling(3).mean()
+    df_hspc["HospitalisedAged5to14_new_7_rm"] = df_hspc["HospitalisedAged5to14_new"].rolling(7).mean()
     # HospitalisedAged15to24
     HospitalisedAged15to24 = df_hspc["HospitalisedAged15to24"].diff().clip(0)
     df_hspc.insert(18, "HospitalisedAged15to24_new", HospitalisedAged15to24)

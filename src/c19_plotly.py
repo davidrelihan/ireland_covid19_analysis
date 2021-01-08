@@ -72,6 +72,8 @@ class C19Plotly(object):
         fig = go.Figure()
         fig.add_trace(go.Scatter(
             x=self.x_hspc, y=self.df_hspc['HospitalisedAged5to14_new_rm'], name="Daily C19 Hospitalised 5-14 (3 Day RM)", mode='lines+markers'))
+        fig.add_trace(go.Scatter(
+            x=self.x_hspc, y=self.df_hspc['HospitalisedAged5to14_new_7_rm'], name="Daily C19 Hospitalised 5-14 (7 Day RM)", mode='lines+markers'))
         fig.add_trace(go.Bar(x=self.x_hspc, y=self.df_hspc['HospitalisedAged5to14_new'],
                                 name="Daily C19 Hospitalised 5-14", marker_color='lightgrey'))
 
@@ -82,6 +84,8 @@ class C19Plotly(object):
         fig = go.Figure()
         fig.add_trace(go.Scatter(
             x=self.x_hspc, y=self.df_hspc['HospitalisedAged5_new_rm'], name="Daily C19 Hospitalised <5 (3 Day RM)", mode='lines+markers'))
+        fig.add_trace(go.Scatter(
+            x=self.x_hspc, y=self.df_hspc['HospitalisedAged5_new_7_rm'], name="Daily C19 Hospitalised <5 (7 Day RM)", mode='lines+markers'))
         fig.add_trace(go.Bar(x=self.x_hspc, y=self.df_hspc['HospitalisedAged5_new'],
                                 name="Daily C19 Hospitalised <5", marker_color='lightgrey'))
 
