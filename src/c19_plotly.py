@@ -64,6 +64,8 @@ class C19Plotly(object):
         fig = go.Figure()
         fig.add_trace(go.Scatter(
             x=self.x_hspc, y=self.df_hspc['RequiringICUCovidCases_new_rm'], name="Daily New C19 ICU (3 Day RM)", mode='lines+markers'))
+        fig.add_trace(go.Scatter(
+            x=self.x_hspc, y=self.df_hspc['RequiringICUCovidCases_new_7_rm'], name="Daily New C19 ICU (7 Day RM)", mode='lines+markers'))
         fig.add_trace(go.Bar(x=self.x_hspc, y=self.df_hspc['RequiringICUCovidCases_new'],
                                 name="Daily New C19 ICU", marker_color='lightgrey'))
 
