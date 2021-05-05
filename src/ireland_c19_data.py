@@ -76,9 +76,9 @@ def get_gov_c19_ireland_dataset():
     df_hspc.insert(26, "HospitalisedAged55to64_new", HospitalisedAged55to64)
     df_hspc["HospitalisedAged55to64_new_rm"] = df_hspc["HospitalisedAged55to64_new"].rolling(3).mean()
     # HospitalisedAged65up
-    HospitalisedAged65up = df_hspc["HospitalisedAged65up"].diff().clip(0)
-    df_hspc.insert(28, "HospitalisedAged65up_new", HospitalisedAged65up)
-    df_hspc["HospitalisedAged65up_new_rm"] = df_hspc["HospitalisedAged65up_new"].rolling(3).mean()
+    #HospitalisedAged65up = df_hspc["HospitalisedAged65up"].diff().clip(0)
+    #df_hspc.insert(28, "HospitalisedAged65up_new", HospitalisedAged65up)
+    #df_hspc["HospitalisedAged65up_new_rm"] = df_hspc["HospitalisedAged65up_new"].rolling(3).mean()
 
     df_hspc = df_hspc.tail(360)
     return df_hspc
