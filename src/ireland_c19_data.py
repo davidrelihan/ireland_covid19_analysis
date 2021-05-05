@@ -6,7 +6,7 @@ def get_daily_c19_ireland_data():
     #add rolling mean
     df["c19_icu_cases_rm"] = df["c19_icu_cases"].rolling(3).mean()
     df["c19_ventilated_cases_rm"] = df["c19_ventilated_cases"].rolling(3).mean()
-    df["available_icu_beds_rm"] = df["available_icu_beds"].rolling(3).mean()
+    #df["available_icu_beds_rm"] = df["available_icu_beds"].rolling(3).mean()
 
     #df = df[0:26]
     df = df.tail(360)
